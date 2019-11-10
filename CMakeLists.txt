@@ -30,7 +30,7 @@ project(nana VERSION      1.7.1
 #######################     Main setting of Nana targets, sources and installs    #####################
 
 add_library(nana)
-add_library(nana::nana ALIAS nana)
+add_library(${PROJECT_NAME}::nana ALIAS nana)
 target_compile_features(nana PUBLIC cxx_std_17)
 
 #  need after cxx_std_14 or cxx_std_17 ??
@@ -134,4 +134,3 @@ include(${CMAKE_CURRENT_LIST_DIR}/build/cmake/enable_jpeg.cmake)
 include(${CMAKE_CURRENT_LIST_DIR}/build/cmake/enable_audio.cmake)
 include(${CMAKE_CURRENT_LIST_DIR}/build/cmake/select_filesystem.cmake)
 include(${CMAKE_CURRENT_LIST_DIR}/build/cmake/verbose.cmake)        # Just for information
-

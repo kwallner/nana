@@ -13,6 +13,7 @@ if(NANA_CMAKE_INSTALL)
 
     # Actually in DESTDIR/CMAKE_INSTALL_PREFIX/lib but in windows there is no DESTDIR/ part.
     install(TARGETS nana
+            EXPORT Targets
             ARCHIVE DESTINATION lib
             LIBRARY DESTINATION lib
             RUNTIME DESTINATION bin)
@@ -20,6 +21,15 @@ if(NANA_CMAKE_INSTALL)
     message("The Nana include files will be installed in ${CMAKE_INSTALL_PREFIX}/include")
     target_include_directories(nana PUBLIC $<BUILD_INTERFACE:${NANA_INCLUDE_DIR}>
                                            $<INSTALL_INTERFACE:include>  )
+
+    # Create a cmake config file
+    include(CMakePackageConfigHelpers)
+    install(
+        EXPORT Targets
+        FILE ${PROJECT_NAME}Config.cmake
+        NAMESPACE ${PROJECT_NAME}::
+        DESTINATION cmake
+        )
 else()
     # this is the prefered method to consume nana with cmake
     message("You are using nana directly from original sources. (Recommended!) "
