@@ -19,6 +19,8 @@ class NanaConan(ConanFile):
         cmake.definitions["NANA_CMAKE_INSTALL"] = True
         # Yet can not handle this
         cmake.definitions["NANA_STATIC_STDLIB"] = False
+        # ... do not want to change defaults
+        cmake.definitions["MSVC_USE_STATIC_RUNTIME"] = False
         # More options are available, see e.g. select_filesystem.cmake
         #cmake.definitions["NANA_CMAKE_NANA_FILESYSTEM_FORCE"] = True
         cmake.definitions["CMAKE_CONFIGURATION_TYPES"]= self.settings.build_type
